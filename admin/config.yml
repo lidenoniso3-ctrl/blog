@@ -9,6 +9,9 @@ backend:
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
 
+# ================================================================
+# إعدادات اللغات الثلاث
+# ================================================================
 i18n:
   structure: multiple_folders
   locales: [ar, en, fr]
@@ -21,12 +24,64 @@ collections:
     folder: "content/posts"
     create: true
     i18n: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    # الرابط الآن يعتمد على الحقل slug (بالإنجليزية)
+    slug: "{{year}}-{{month}}-{{day}}-{{fields.slug}}"
     fields:
-      - { label: "العنوان", name: "title", widget: "string", i18n: true }
-      - { label: "الفئة", name: "category", widget: "select", options: ["tech", "cars", "life"], i18n: duplicate }
-      - { label: "التاريخ", name: "date", widget: "datetime", i18n: duplicate }
-      - { label: "الكاتب", name: "author", widget: "string", i18n: true }
-      - { label: "الصورة", name: "image", widget: "image", required: false, i18n: duplicate }
-      - { label: "المقتطف", name: "excerpt", widget: "text", i18n: true }
-      - { label: "المحتوى", name: "body", widget: "richtext", i18n: true }
+      - {
+          label: "العنوان",
+          name: "title",
+          widget: "string",
+          i18n: true
+        }
+      
+      - {
+          label: "الرابط بالإنجليزية (Slug)",
+          name: "slug",
+          widget: "string",
+          i18n: duplicate,
+          hint: "اكتب هنا اسم قصير بالإنجليزية فقط — مثال: tesla-vs-rivals-2026"
+        }
+      
+      - {
+          label: "الفئة",
+          name: "category",
+          widget: "select",
+          options: ["tech", "cars", "life"],
+          i18n: duplicate
+        }
+      
+      - {
+          label: "التاريخ",
+          name: "date",
+          widget: "datetime",
+          i18n: duplicate
+        }
+      
+      - {
+          label: "الكاتب",
+          name: "author",
+          widget: "string",
+          i18n: true
+        }
+      
+      - {
+          label: "الصورة",
+          name: "image",
+          widget: "image",
+          required: false,
+          i18n: duplicate
+        }
+      
+      - {
+          label: "المقتطف",
+          name: "excerpt",
+          widget: "text",
+          i18n: true
+        }
+      
+      - {
+          label: "المحتوى",
+          name: "body",
+          widget: "richtext",
+          i18n: true
+        }
