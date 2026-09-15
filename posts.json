@@ -1,0 +1,70 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "lang": "ar",
+      "category": "tech",
+      "title": "مستقبل الذكاء الاصطناعي في 2026",
+      "excerpt": "كيف سيغيّر الذكاء الاصطناعي حياتنا اليومية في السنوات القادمة؟ نظرة شاملة على أهم التطورات المتوقعة.",
+      "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800",
+      "date": "2026-09-15",
+      "author": "أحمد محمد",
+      "content": "<p>يشهد العالم تطوراً متسارعاً في مجال الذكاء الاصطناعي، ومن المتوقع أن يشهد عام 2026 قفزات نوعية في هذا المجال.</p><h2>التطورات الرئيسية</h2><p>من المتوقع أن نشهد تحسناً كبيراً في نماذج اللغة الكبيرة، وقدرات أفضل في الفهم البصري، وتطبيقات عملية في مجالات الصحة والتعليم.</p><h3>التأثير على الوظائف</h3><p>سيتغير شكل سوق العمل بشكل جذري، مع ظهور وظائف جديدة واختفاء أخرى.</p>"
+    },
+    {
+      "id": "2",
+      "lang": "ar",
+      "category": "cars",
+      "title": "أفضل السيارات الكهربائية لعام 2026",
+      "excerpt": "دليل شامل لأفضل السيارات الكهربائية التي طرحت في الأسواق هذا العام، مع مقارنة بين المواصفات والأسعار.",
+      "image": "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800",
+      "date": "2026-09-14",
+      "author": "سارة علي",
+      "content": "<p>شهد عام 2026 إطلاق العديد من السيارات الكهربائية المميزة من مختلف الشركات المصنعة.</p><h2>تسلا Model 3</h2><p>لا تزال تسلا في الصدارة مع تحسينات جديدة على المدى والسرعة.</p><h2>بي إم دبليو i4</h2><p>تجمع بين الفخامة والأداء الكهربائي في تصميم أنيق.</p>"
+    },
+    {
+      "id": "3",
+      "lang": "en",
+      "category": "tech",
+      "title": "The Future of AI in 2026",
+      "excerpt": "How will artificial intelligence change our daily lives in the coming years? A comprehensive look at the most anticipated developments.",
+      "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800",
+      "date": "2026-09-15",
+      "author": "Ahmed Mohamed",
+      "content": "<p>The world is witnessing rapid development in the field of artificial intelligence.</p><h2>Key Developments</h2><p>We expect significant improvements in large language models, better visual understanding, and practical applications in health and education.</p>"
+    },
+    {
+      "id": "4",
+      "lang": "en",
+      "category": "cars",
+      "title": "Best Electric Cars of 2026",
+      "excerpt": "A comprehensive guide to the best electric cars launched this year, with comparisons of specifications and prices.",
+      "image": "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800",
+      "date": "2026-09-14",
+      "author": "Sarah Ali",
+      "content": "<p>2026 has seen the launch of many excellent electric cars from various manufacturers.</p><h2>Tesla Model 3</h2><p>Tesla remains in the lead with new improvements in range and speed.</p>"
+    },
+    {
+      "id": "5",
+      "lang": "fr",
+      "category": "tech",
+      "title": "L'avenir de l'IA en 2026",
+      "excerpt": "Comment l'intelligence artificielle va-t-elle changer notre vie quotidienne dans les années à venir ? Un regard complet sur les développements attendus.",
+      "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800",
+      "date": "2026-09-15",
+      "author": "Ahmed Mohamed",
+      "content": "<p>Le monde connaît un développement rapide dans le domaine de l'intelligence artificielle.</p><h2>Développements clés</h2><p>Nous nous attendons à des améliorations significatives dans les grands modèles de langage.</p>"
+    },
+    {
+      "id": "6",
+      "lang": "fr",
+      "category": "cars",
+      "title": "Meilleures voitures électriques de 2026",
+      "excerpt": "Un guide complet des meilleures voitures électriques lancées cette année, avec des comparaisons de spécifications et de prix.",
+      "image": "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800",
+      "date": "2026-09-14",
+      "author": "Sarah Ali",
+      "content": "<p>L'année 2026 a vu le lancement de nombreuses voitures électriques excellentes.</p><h2>Tesla Model 3</h2><p>Tesla reste en tête avec de nouvelles améliorations.</p>"
+    }
+  ]
+}

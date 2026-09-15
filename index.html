@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>مدونتي — أحدث المقالات</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#" class="site-logo" onclick="goHome(event)">
+      <img src="assets/logo.svg" alt="Logo">
+      <span>مدونتي</span>
+    </a>
+
+    <nav class="main-nav">
+      <a href="#" class="active" data-cat="all">الرئيسية</a>
+      <a href="#" data-cat="tech">تقنية</a>
+      <a href="#" data-cat="cars">سيارات</a>
+      <a href="#" data-cat="life">حياة</a>
+    </nav>
+
+    <div class="lang-switcher">
+      <a href="#" data-lang="ar" class="active">AR</a>
+      <a href="#" data-lang="en">EN</a>
+      <a href="#" data-lang="fr">FR</a>
+    </div>
+
+    <button class="theme-btn" id="theme-btn" aria-label="الوضع الليلي">🌙</button>
+  </div>
+</header>
+
+<main id="content">
+  <div class="loading-state">
+    <div class="spinner"></div>
+    <p>جارٍ تحميل المقالات…</p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>مدونتي</h3>
+      <p>مدونة عصرية بثلاث لغات — مقالات عن التقنية، السيارات، والحياة.</p>
+    </div>
+    <div class="footer-col">
+      <h4>اللغات</h4>
+      <ul>
+        <li><a href="#" data-lang="ar">العربية</a></li>
+        <li><a href="#" data-lang="en">English</a></li>
+        <li><a href="#" data-lang="fr">Français</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>روابط</h4>
+      <ul>
+        <li><a href="admin/">لوحة التحكم</a></li>
+        <li><a href="#">من نحن</a></li>
+        <li><a href="#">اتصل بنا</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© <span id="year"></span> مدونتي. جميع الحقوق محفوظة.</span>
+    <span>صُنع بـ ❤️</span>
+  </div>
+</footer>
+
+<button class="back-to-top" id="back-to-top" aria-label="العودة للأعلى">↑</button>
+
+<script src="app.js"></script>
+</body>
+</html>
