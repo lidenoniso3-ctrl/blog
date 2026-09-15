@@ -4,8 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>مدونتي — أحدث المقالات</title>
+  <meta name="description" content="مدونة عصرية بثلاث لغات — مقالات عن التقنية، السيارات، والحياة.">
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -16,30 +17,65 @@
       <img src="assets/logo.svg" alt="Logo">
       <span>مدونتي</span>
     </a>
-
     <nav class="main-nav">
       <a href="#" class="active" data-cat="all">الرئيسية</a>
       <a href="#" data-cat="tech">تقنية</a>
       <a href="#" data-cat="cars">سيارات</a>
       <a href="#" data-cat="life">حياة</a>
     </nav>
-
     <div class="lang-switcher">
       <a href="#" data-lang="ar" class="active">AR</a>
       <a href="#" data-lang="en">EN</a>
       <a href="#" data-lang="fr">FR</a>
     </div>
-
     <button class="theme-btn" id="theme-btn" aria-label="الوضع الليلي">🌙</button>
   </div>
 </header>
 
+<!-- HERO SECTION -->
+<section class="hero-section">
+  <div class="hero-container">
+    <div class="hero-content">
+      <span class="hero-badge">✨ مدونة 2026</span>
+      <h1 class="hero-title">مرحباً بك في <span class="hero-accent">مدونتي</span></h1>
+      <p class="hero-subtitle">مقالات حصرية عن التقنية، السيارات، والحياة — بثلاث لغات</p>
+      <div class="hero-stats">
+        <div class="stat">
+          <strong id="stat-total">0</strong>
+          <span>مقالة</span>
+        </div>
+        <div class="stat">
+          <strong>3</strong>
+          <span>لغات</span>
+        </div>
+        <div class="stat">
+          <strong>4</strong>
+          <span>أقسام</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
 <main id="content">
   <div class="loading-state">
     <div class="spinner"></div>
     <p>جارٍ تحميل المقالات…</p>
   </div>
 </main>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <div class="newsletter-inner">
+    <h2>📬 اشترك في النشرة البريدية</h2>
+    <p>احصل على أحدث المقالات مباشرة في بريدك</p>
+    <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+      <input type="email" placeholder="بريدك الإلكتروني" required>
+      <button type="submit">اشترك</button>
+    </form>
+  </div>
+</section>
 
 <footer class="site-footer">
   <div class="footer-inner">

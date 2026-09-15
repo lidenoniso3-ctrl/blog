@@ -1,23 +1,23 @@
 /* ================================================================
-   مدونتي — منطق التطبيق
+   مدونتي — منطق التطبيق (نسخة احترافية)
    ================================================================ */
 
 const state = {
   lang: "ar",
   category: "all",
   posts: [],
-  view: "home", // home | article
+  view: "home",
   currentArticle: null,
 };
 
 const $ = (s) => document.querySelector(s);
+const $$ = (s) => document.querySelectorAll(s);
 
 const TEXTS = {
   ar: {
     loading: "جارٍ تحميل المقالات…",
     empty: "لا توجد مقالات في هذا القسم",
     emptyHint: "جرّب قسماً آخر أو غيّر اللغة",
-    home: "الرئيسية",
     readMore: "اقرأ المزيد ←",
     back: "→ رجوع",
     articles: "مقالة",
@@ -28,7 +28,6 @@ const TEXTS = {
     loading: "Loading articles…",
     empty: "No articles in this category",
     emptyHint: "Try another category or change language",
-    home: "Home",
     readMore: "Read more →",
     back: "← Back",
     articles: "articles",
@@ -39,7 +38,6 @@ const TEXTS = {
     loading: "Chargement des articles…",
     empty: "Aucun article dans cette catégorie",
     emptyHint: "Essayez une autre catégorie ou changez de langue",
-    home: "Accueil",
     readMore: "Lire la suite →",
     back: "← Retour",
     articles: "articles",
@@ -52,6 +50,7 @@ const TEXTS = {
 async function loadPosts() {
   try {
     const res = await fetch("posts.json?t=" + Date.now());
+    if (!res.ok) throw new Error("HTTP " + res.status);
     const data = await res.json();
     state.posts = data.posts || [];
     return state.posts;
@@ -79,6 +78,12 @@ function formatDate(dateStr) {
       year: "numeric", month: "long", day: "numeric"
     });
   } catch { return dateStr; }
+}
+
+/* ===== إحصائيات Hero ===== */
+function updateHeroStats() {
+  const statTotal = $("#stat-total");
+  if (statTotal) statTotal.textContent = state.posts.length;
 }
 
 /* ===== رسم الصفحة الرئيسية ===== */
@@ -111,8 +116,7 @@ function renderHome() {
   grid.innerHTML = posts.map(p => `
     <article class="article-card" data-id="${p.id}">
       <div class="article-image">
-        <img src="${p.image}" alt="${escapeHTML(p.title)}" loading="lazy"
-             onerror="this.style.display='none'">
+        ${p.image ? `<img src="${p.image}" alt="${escapeHTML(p.title)}" loading="lazy" onerror="this.parentElement.style.background='linear-gradient(135deg, var(--primary), var(--primary-2))'">` : ""}
       </div>
       <div class="article-body">
         <div class="article-meta">
@@ -136,7 +140,7 @@ function renderHome() {
 
 /* ===== فتح مقال ===== */
 function openArticle(id) {
-  const post = state.posts.find(p => p.id === id && p.lang === state.lang);
+  const post = state.posts.find(p => p.id === id);
   if (!post) return;
 
   state.view = "article";
@@ -155,9 +159,10 @@ function openArticle(id) {
         <span>📅 ${formatDate(post.date)}</span>
         <span class="article-category">${t.categories[post.category] || post.category}</span>
       </div>
+      ${post.image ? `
       <div class="featured">
         <img src="${post.image}" alt="" onerror="this.parentElement.style.display='none'">
-      </div>
+      </div>` : ""}
       <div class="content">${post.content}</div>
     </div>
   `;
@@ -185,7 +190,7 @@ function setLang(lang) {
   state.view = "home";
   document.documentElement.lang = lang;
   document.documentElement.dir = (lang === "ar") ? "rtl" : "ltr";
-  document.querySelectorAll(".lang-switcher a").forEach(a => {
+  $$(".lang-switcher a").forEach(a => {
     a.classList.toggle("active", a.dataset.lang === lang);
   });
   localStorage.setItem("blog:lang", lang);
@@ -195,7 +200,7 @@ function setLang(lang) {
 /* ===== تبديل الفئة ===== */
 function setCategory(cat) {
   state.category = cat;
-  document.querySelectorAll(".main-nav a").forEach(a => {
+  $$(".main-nav a").forEach(a => {
     a.classList.toggle("active", a.dataset.cat === cat);
   });
   if (state.view !== "home") state.view = "home";
@@ -229,6 +234,14 @@ function setupBackToTop() {
   });
 }
 
+/* ===== Newsletter ===== */
+function subscribeNewsletter(e) {
+  e.preventDefault();
+  const input = e.target.querySelector("input");
+  alert("✅ تم الاشتراك بنجاح! " + input.value);
+  input.value = "";
+}
+
 /* ===== الإعداد ===== */
 async function init() {
   const yearEl = $("#year");
@@ -237,34 +250,46 @@ async function init() {
   setupTheme();
   setupBackToTop();
 
-  // اللغة المحفوظة
   const savedLang = localStorage.getItem("blog:lang") || "ar";
   state.lang = savedLang;
   document.documentElement.lang = savedLang;
   document.documentElement.dir = (savedLang === "ar") ? "rtl" : "ltr";
-  document.querySelectorAll(".lang-switcher a").forEach(a => {
+  $$(".lang-switcher a").forEach(a => {
     a.classList.toggle("active", a.dataset.lang === savedLang);
   });
 
-  // مستمعو الأحداث
-  document.querySelectorAll(".lang-switcher a").forEach(a => {
+  $$(".lang-switcher a").forEach(a => {
     a.addEventListener("click", (e) => {
       e.preventDefault();
       setLang(a.dataset.lang);
     });
   });
 
-  document.querySelectorAll(".main-nav a").forEach(a => {
+  $$(".main-nav a").forEach(a => {
     a.addEventListener("click", (e) => {
       e.preventDefault();
       setCategory(a.dataset.cat);
     });
   });
 
-  // تحميل المقالات
+  // Footer language links
+  $$(".footer-col a[data-lang]").forEach(a => {
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      setLang(a.dataset.lang);
+    });
+  });
+
   await loadPosts();
+  updateHeroStats();
   renderHome();
 }
 
 document.addEventListener("DOMContentLoaded", init);
-window.goHome = (e) => { e.preventDefault(); state.view = "home"; renderHome(); };
+window.goHome = (e) => { 
+  if (e) e.preventDefault(); 
+  state.view = "home"; 
+  renderHome(); 
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+window.subscribeNewsletter = subscribeNewsletter;
