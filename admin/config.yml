@@ -5,7 +5,7 @@ backend:
   base_url: https://sveltia-cms-auth.lidenoniso3.workers.dev
 
 media_folder: "assets/uploads"
-public_folder: "/assets/uploads"
+public_folder: "assets/uploads"
 
 collections:
   - name: "posts_ar"

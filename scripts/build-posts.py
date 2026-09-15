@@ -8,6 +8,18 @@ import markdown
 CONTENT_DIR = Path("content/posts")
 OUTPUT_FILE = Path("posts.json")
 
+def normalize_image_path(path):
+    """تحويل مسارات الصور إلى مسارات نسبية تعمل على GitHub Pages"""
+    if not path:
+        return ""
+    path = str(path).strip()
+    # إزالة الشرطة من البداية
+    path = path.lstrip("/")
+    # إزالة blog/ إذا كانت موجودة
+    if path.startswith("blog/"):
+        path = path[5:]
+    return path
+
 def parse_frontmatter(text):
     match = re.match(r'^---\s*\n(.*?)\n---\s*\n(.*)$', text, re.DOTALL)
     if not match:
@@ -24,7 +36,7 @@ def build():
     post_id = 1
     
     if not CONTENT_DIR.exists():
-        print("لا يوجد مجلد content/posts")
+        print("⚠️ لا يوجد مجلد content/posts")
         OUTPUT_FILE.write_text('{"posts":[]}', encoding="utf-8")
         return
     
@@ -47,14 +59,14 @@ def build():
                     "category": meta.get("category", "tech"),
                     "title": meta.get("title", ""),
                     "excerpt": meta.get("excerpt", ""),
-                    "image": meta.get("image", ""),
+                    "image": normalize_image_path(meta.get("image", "")),
                     "date": str(meta.get("date", "")),
                     "author": meta.get("author", ""),
                     "content": content_html,
                 })
                 post_id += 1
             except Exception as e:
-                print(f"خطأ في {md_file}: {e}")
+                print(f"❌ خطأ في {md_file}: {e}")
     
     posts.sort(key=lambda p: p["date"], reverse=True)
     for i, p in enumerate(posts, 1):
