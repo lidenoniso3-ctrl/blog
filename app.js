@@ -1,5 +1,5 @@
 /* ================================================================
-   مدونتي — منطق التطبيق (نسخة احترافية)
+   مدونتي — منطق التطبيق (نسخة نهائية)
    ================================================================ */
 
 const state = {
@@ -116,7 +116,7 @@ function renderHome() {
   grid.innerHTML = posts.map(p => `
     <article class="article-card" data-id="${p.id}">
       <div class="article-image">
-        ${p.image ? `<img src="${p.image}" alt="${escapeHTML(p.title)}" loading="lazy" onerror="this.parentElement.style.background='linear-gradient(135deg, var(--primary), var(--primary-2))'">` : ""}
+        ${p.image ? `<img src="${p.image}" alt="${escapeHTML(p.title)}" loading="lazy">` : ""}
       </div>
       <div class="article-body">
         <div class="article-meta">
@@ -134,14 +134,17 @@ function renderHome() {
   `).join("");
 
   grid.querySelectorAll(".article-card").forEach(card => {
-    card.addEventListener("click", () => openArticle(parseInt(card.dataset.id, 10)));
+    card.addEventListener("click", () => openArticle(card.dataset.id));
   });
 }
 
 /* ===== فتح مقال ===== */
 function openArticle(id) {
-  const post = state.posts.find(p => p.id === id);
-  if (!post) return;
+  const post = state.posts.find(p => String(p.id) === String(id));
+  if (!post) {
+    console.error("لم يتم العثور على المقال:", id);
+    return;
+  }
 
   state.view = "article";
   state.currentArticle = post;
@@ -161,7 +164,7 @@ function openArticle(id) {
       </div>
       ${post.image ? `
       <div class="featured">
-        <img src="${post.image}" alt="" onerror="this.parentElement.style.display='none'">
+        <img src="${post.image}" alt="">
       </div>` : ""}
       <div class="content">${post.content}</div>
     </div>
@@ -272,7 +275,6 @@ async function init() {
     });
   });
 
-  // Footer language links
   $$(".footer-col a[data-lang]").forEach(a => {
     a.addEventListener("click", (e) => {
       e.preventDefault();
