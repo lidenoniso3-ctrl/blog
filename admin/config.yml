@@ -1,5 +1,3 @@
-# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
-
 backend:
   name: github
   repo: lidenoniso3-ctrl/blog
@@ -10,74 +8,47 @@ media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
 
 collections:
-  - name: "posts"
-    label: "المقالات"
-    label_singular: "مقال"
-    folder: "content/posts/{{fields.lang}}"
+  - name: "posts_ar"
+    label: "المقالات - عربية 🇸🇦"
+    folder: "content/posts/ar"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{fields.slug}}"
     fields:
-      - {
-          label: "اللغة",
-          name: "lang",
-          widget: "select",
-          options: [
-            { label: "🇸🇦 العربية", value: "ar" },
-            { label: "🇬🇧 English", value: "en" },
-            { label: "🇫🇷 Français", value: "fr" }
-          ],
-          default: "ar",
-          hint: "اختر لغة المقال — كل مقال في لغة واحدة فقط"
-        }
-      
-      - {
-          label: "العنوان",
-          name: "title",
-          widget: "string",
-          hint: "اكتب العنوان بلغة المقال"
-        }
-      
-      - {
-          label: "الرابط بالإنجليزية (Slug)",
-          name: "slug",
-          widget: "string",
-          hint: "بالإنجليزية فقط — مثال: tesla-vs-rivals-2026"
-        }
-      
-      - {
-          label: "الفئة",
-          name: "category",
-          widget: "select",
-          options: ["tech", "cars", "life"]
-        }
-      
-      - {
-          label: "التاريخ",
-          name: "date",
-          widget: "datetime"
-        }
-      
-      - {
-          label: "الكاتب",
-          name: "author",
-          widget: "string"
-        }
-      
-      - {
-          label: "الصورة",
-          name: "image",
-          widget: "image",
-          required: false
-        }
-      
-      - {
-          label: "المقتطف",
-          name: "excerpt",
-          widget: "text"
-        }
-      
-      - {
-          label: "المحتوى",
-          name: "body",
-          widget: "richtext"
-        }
+      - { label: "العنوان", name: "title", widget: "string" }
+      - { label: "Slug (بالإنجليزية)", name: "slug", widget: "string" }
+      - { label: "الفئة", name: "category", widget: "select", options: ["tech", "cars", "life"] }
+      - { label: "التاريخ", name: "date", widget: "datetime" }
+      - { label: "الكاتب", name: "author", widget: "string" }
+      - { label: "الصورة", name: "image", widget: "image", required: false }
+      - { label: "المقتطف", name: "excerpt", widget: "text" }
+      - { label: "المحتوى", name: "body", widget: "richtext" }
+
+  - name: "posts_en"
+    label: "Articles - English 🇬🇧"
+    folder: "content/posts/en"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{fields.slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Category", name: "category", widget: "select", options: ["tech", "cars", "life"] }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Author", name: "author", widget: "string" }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "Excerpt", name: "excerpt", widget: "text" }
+      - { label: "Body", name: "body", widget: "richtext" }
+
+  - name: "posts_fr"
+    label: "Articles - Français 🇫🇷"
+    folder: "content/posts/fr"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{fields.slug}}"
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Catégorie", name: "category", widget: "select", options: ["tech", "cars", "life"] }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Auteur", name: "author", widget: "string" }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "Extrait", name: "excerpt", widget: "text" }
+      - { label: "Contenu", name: "body", widget: "richtext" }

@@ -24,7 +24,7 @@ def build():
     post_id = 1
     
     if not CONTENT_DIR.exists():
-        print("⚠️ لا يوجد مجلد content/posts")
+        print("لا يوجد مجلد content/posts")
         OUTPUT_FILE.write_text('{"posts":[]}', encoding="utf-8")
         return
     
@@ -54,7 +54,7 @@ def build():
                 })
                 post_id += 1
             except Exception as e:
-                print(f"❌ خطأ في {md_file}: {e}")
+                print(f"خطأ في {md_file}: {e}")
     
     posts.sort(key=lambda p: p["date"], reverse=True)
     for i, p in enumerate(posts, 1):
