@@ -2,9 +2,9 @@
 
 backend:
   name: github
-  repo: USERNAME/REPO-NAME          # ← استبدل
+  repo: lidenoniso3-ctrl/blog
   branch: main
-  base_url: https://WORKER.workers.dev   # ← استبدل
+  base_url: https://sveltia-cms-auth.lidenoniso3.workers.dev
 
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
